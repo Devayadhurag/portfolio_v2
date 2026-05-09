@@ -13,76 +13,112 @@ const Footer: React.FC = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer
-      style={{
-        backgroundColor: "#000",
-        width: "100%",
-        borderTop: "1px solid #1a1a1a",
-      }}
-    >
-      <div
-        style={{
-          maxWidth: "1200px",
-          margin: "0 auto",
-          padding: "0 2rem",
-          height: "48px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          flexWrap: "wrap",
-          gap: "0.5rem",
-        }}
-      >
-        {/* Copyright */}
-        <span
-          style={{
-            color: "#888",
-            fontSize: "0.72rem",
-            letterSpacing: "0.05em",
-            fontFamily: "'Courier New', monospace",
-            whiteSpace: "nowrap",
-          }}
-        >
-          &copy; {year}{" "}
-          <span style={{ color: "#fff", fontWeight: 600 }}>Devayadhurag</span>
-          {" "}— All rights reserved.
-        </span>
+    <>
+      <style>
+        {`
+          .footer-container {
+            background-color: #000;
+            width: 100%;
+            border-top: 1px solid #1a1a1a;
+          }
 
-        {/* Built with */}
-        <span
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "0.35rem",
-            color: "#555",
-            fontSize: "0.68rem",
-            letterSpacing: "0.08em",
-            textTransform: "uppercase",
-            fontFamily: "'Courier New', monospace",
-            whiteSpace: "nowrap",
-          }}
-        >
-          Built with
-          {techStack.map(({ icon, label }) => (
-            <span
-              key={label}
-              title={label}
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "0.2rem",
-                marginLeft: "0.3rem",
-                color: "#aaa",
-                fontSize: "0.68rem",
-              }}
-            >
-              {icon}
-              <span style={{ color: "#666" }}>{label}</span>
-            </span>
-          ))}
-        </span>
-      </div>
-    </footer>
+          .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            min-height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+          }
+
+          .footer-copyright {
+            color: #888;
+            font-size: 0.72rem;
+            letter-spacing: 0.05em;
+            font-family: 'Courier New', monospace;
+            white-space: nowrap;
+          }
+
+          .footer-copyright span {
+            color: #fff;
+            font-weight: 600;
+          }
+
+          .footer-tech-stack {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            color: #555;
+            font-size: 0.68rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-family: 'Courier New', monospace;
+            flex-wrap: wrap;
+          }
+
+          .footer-tech-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.2rem;
+            margin-left: 0.3rem;
+            color: #aaa;
+            font-size: 0.68rem;
+          }
+
+          .footer-tech-item span {
+            color: #666;
+          }
+
+          @media (max-width: 768px) {
+            .footer-content {
+              padding: 16px 20px;
+              justify-content: center;
+              flex-direction: column;
+              text-align: center;
+            }
+            
+            .footer-tech-stack {
+              justify-content: center;
+            }
+            
+            .footer-copyright {
+              white-space: normal;
+            }
+          }
+          
+          @media (max-width: 480px) {
+            .footer-tech-item {
+              margin-left: 0.1rem;
+            }
+            .footer-tech-stack {
+              gap: 0.2rem;
+            }
+          }
+        `}
+      </style>
+      <footer className="footer-container">
+        <div className="footer-content">
+          {/* Copyright */}
+          <span className="footer-copyright">
+            &copy; {year} <span>Devayadhurag</span> — All rights reserved.
+          </span>
+
+          {/* Built with */}
+          <span className="footer-tech-stack">
+            Built with
+            {techStack.map(({ icon, label }) => (
+              <span key={label} title={label} className="footer-tech-item">
+                {icon}
+                <span>{label}</span>
+              </span>
+            ))}
+          </span>
+        </div>
+      </footer>
+    </>
   );
 };
 

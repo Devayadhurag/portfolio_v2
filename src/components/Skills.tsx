@@ -137,42 +137,72 @@ const skillData: SkillCardProps[] = [
   { icon: TbAccessible, name: "Accessibility", expertise: "Expert", progress: 92 },
 ];
 
-const styles: { [key: string]: React.CSSProperties } = {
-  section: {
-    background: "#dedede",
-    padding: "48px 40px",
-    fontFamily: "Helvetica, Arial, sans-serif",
-    color: "#000",
-  },
-
-  skillLabel: {
-    fontFamily: "'Syne', system-ui, sans-serif",
-    fontSize: "22px",
-    fontWeight: 400,
-    letterSpacing: "0.22em",
-    textTransform: "uppercase",
-    color: "#ea5600",
-    margin: "0 0 44px",
-  },
-
-  grid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(3, 1fr)",
-    gap: "14px",
-  },
-};
-
 const Skills = () => {
   return (
-    <div style={styles.section} id="skills">
-      <h1 style={styles.skillLabel}>Skills</h1>
+    <>
+      <style>
+        {`
+          .skills-section {
+            background: #dedede;
+            padding: 48px 40px;
+            font-family: Helvetica, Arial, sans-serif;
+            color: #000;
+          }
 
-      <div style={styles.grid}>
-        {skillData.map((skill) => (
-          <SkillCard key={skill.name} {...skill} />
-        ))}
+          .skills-label {
+            font-family: 'Syne', system-ui, sans-serif;
+            font-size: 22px;
+            font-weight: 400;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #ea5600;
+            margin: 0 0 44px;
+          }
+
+          .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+          }
+
+          /* Responsive Breakpoints */
+          @media (max-width: 1024px) {
+            .skills-section {
+              padding: 48px 30px;
+            }
+            
+            .skills-grid {
+              grid-template-columns: repeat(2, 1fr);
+            }
+          }
+
+          @media (max-width: 768px) {
+            .skills-section {
+              padding: 40px 20px;
+            }
+
+            .skills-label {
+              font-size: 20px;
+              margin: 0 0 32px;
+            }
+
+            .skills-grid {
+              grid-template-columns: 1fr;
+            }
+          }
+        `}
+      </style>
+
+      <div className="skills-section" id="skills">
+        <h1 className="skills-label">Skills</h1>
+
+        <div className="skills-grid">
+          {skillData.map((skill) => (
+            <SkillCard key={skill.name} {...skill} />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

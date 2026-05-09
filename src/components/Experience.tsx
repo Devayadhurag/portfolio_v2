@@ -30,132 +30,11 @@ const experiences = [
   },
 ];
 
-const styles: { [key: string]: React.CSSProperties } = {
-  section: {
-    background: "#d0d0d0",
-    padding: "48px 40px",
-    fontFamily: "Helvetica, Arial, sans-serif",
-    color: "#000",
-  },
-
-  experienceLabel: {
-    fontFamily: "'Syne', system-ui, sans-serif",
-    fontSize: "22px",
-    fontWeight: 400,
-    letterSpacing: "0.22em",
-    textTransform: "uppercase",
-    color: "#ea5600",
-    margin: "0 0 44px",
-  },
-
-  row: {
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr",
-  },
-
-  photoSlot: {
-    aspectRatio: "2 / 1",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-
-  photoPlaceholder: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    gap: "6px",
-    opacity: 0.45,
-  },
-
-  photoIcon: {
-    fontSize: "28px",
-    color: "#555",
-  },
-
-  photoLabel: {
-    fontSize: "12px",
-    color: "#555",
-    letterSpacing: "0.08em",
-    textTransform: "uppercase",
-  },
-
-  content: {
-    padding: "32px 28px",
-    background: "#d0d0d0",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-  },
-
-  jobTop: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "baseline",
-    marginBottom: "2px",
-  },
-
-  jobRole: {
-    fontFamily: "'Space Mono', monospace",
-    fontSize: "20px",
-    fontWeight: 700,
-    color: "#ea5600",
-  },
-
-  jobDate: {
-    fontFamily: "'Space Mono', monospace",
-    fontSize: "13px",
-    color: "#000",
-  },
-
-  jobBottom: {
-    fontFamily: "'Space Mono', monospace",
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "baseline",
-    marginBottom: "14px",
-  },
-
-  jobCompany: {
-    fontFamily: "'Space Mono', monospace",
-    fontSize: "13px",
-    color: "rgba(0,0,0,0.6)",
-  },
-
-  jobLocation: {
-    fontFamily: "'Space Mono', monospace",
-    fontSize: "13px",
-    color: "rgba(0,0,0,0.6)",
-  },
-
-  description: {
-    fontFamily: "'Space Mono', monospace",
-    fontSize: "13.5px",
-    lineHeight: "1.75",
-    color: "#000",
-    margin: 0,
-    minHeight: "120px",
-    whiteSpace: "pre-wrap",
-  },
-
-  divider: {
-    border: "none",
-    borderTop: "1px solid rgba(0,0,0,0.18)",
-    margin: "0",
-  },
-
-  cursor: {
-    display: "inline-block",
-    width: "8px",
-    animation: "blink 1s infinite",
-  },
-};
-
 const PhotoSlot = () => (
-  <div style={styles.photoSlot}>
-    <div style={styles.photoPlaceholder}>
-      <span style={styles.photoIcon}>📷</span>
-      <span style={styles.photoLabel}>Photo</span>
+  <div className="exp-photo-slot">
+    <div className="exp-photo-placeholder">
+      <span className="exp-photo-icon">📷</span>
+      <span className="exp-photo-label">Photo</span>
     </div>
   </div>
 );
@@ -205,10 +84,10 @@ const TypewriterOnScroll = ({ text }: TypewriterProps) => {
   }, [started, text]);
 
   return (
-    <p ref={ref} style={styles.description}>
+    <p ref={ref} className="exp-description">
       {displayedText}
       {displayedText.length < text.length && (
-        <span style={styles.cursor}>|</span>
+        <span className="exp-cursor">|</span>
       )}
     </p>
   );
@@ -220,35 +99,214 @@ const Experience = () => {
       <style>
         {`
           @keyframes blink {
-            0%, 50% {
-              opacity: 1;
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+          }
+
+          .exp-section {
+            background: #d0d0d0;
+            padding: 48px 40px;
+            font-family: Helvetica, Arial, sans-serif;
+            color: #000;
+          }
+
+          .exp-label {
+            font-family: 'Syne', system-ui, sans-serif;
+            font-size: 22px;
+            font-weight: 400;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #ea5600;
+            margin: 0 0 44px;
+          }
+
+          .exp-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+          }
+
+          .exp-photo-slot {
+            aspect-ratio: 2 / 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          .exp-photo-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            opacity: 0.45;
+          }
+
+          .exp-photo-icon {
+            font-size: 28px;
+            color: #555;
+          }
+
+          .exp-photo-label {
+            font-size: 12px;
+            color: #555;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+          }
+
+          .exp-content {
+            padding: 32px 28px;
+            background: #d0d0d0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+          }
+
+          .exp-job-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 2px;
+            flex-wrap: wrap;
+            gap: 8px;
+          }
+
+          .exp-job-role {
+            font-family: 'Space Mono', monospace;
+            font-size: 20px;
+            font-weight: 700;
+            color: #ea5600;
+          }
+
+          .exp-job-date {
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            color: #000;
+          }
+
+          .exp-job-bottom {
+            font-family: 'Space Mono', monospace;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+            gap: 8px;
+          }
+
+          .exp-job-company, .exp-job-location {
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            color: rgba(0,0,0,0.6);
+          }
+
+          .exp-description {
+            font-family: 'Space Mono', monospace;
+            font-size: 13.5px;
+            line-height: 1.75;
+            color: #000;
+            margin: 0;
+            min-height: 120px;
+            white-space: pre-wrap;
+          }
+
+          .exp-divider {
+            border: none;
+            border-top: 1px solid rgba(0,0,0,0.18);
+            margin: 0;
+          }
+
+          .exp-cursor {
+            display: inline-block;
+            width: 8px;
+            animation: blink 1s infinite;
+          }
+
+          /* Responsive Breakpoints */
+          @media (max-width: 1024px) {
+            .exp-section {
+              padding: 48px 30px;
             }
-            51%, 100% {
-              opacity: 0;
+            
+            .exp-row {
+              gap: 16px;
+            }
+            
+            .exp-content {
+              padding: 24px 20px;
+            }
+          }
+
+          @media (max-width: 768px) {
+            .exp-section {
+              padding: 40px 20px;
+            }
+
+            .exp-row {
+              grid-template-columns: 1fr;
+              gap: 16px;
+            }
+
+            .exp-photo-slot {
+              aspect-ratio: 16 / 9;
+              order: -1; /* Always show photo first on mobile */
+            }
+            
+            .exp-content {
+              padding: 16px 0; /* Remove side padding on mobile */
+            }
+
+            .exp-label {
+              font-size: 20px;
+              margin: 0 0 32px;
+            }
+
+            .exp-job-role {
+              font-size: 18px;
+            }
+
+            .exp-job-date, .exp-job-company, .exp-job-location {
+              font-size: 12px;
+            }
+            
+            .exp-description {
+              font-size: 13px;
+              min-height: auto;
+            }
+            
+            .exp-divider {
+              margin: 16px 0;
+            }
+          }
+          
+          @media (max-width: 480px) {
+            .exp-job-top, .exp-job-bottom {
+              flex-direction: column;
+              align-items: flex-start;
+              gap: 4px;
             }
           }
         `}
       </style>
 
-      <div style={styles.section} id="experience">
-        <p style={styles.experienceLabel}>Experience</p>
+      <div className="exp-section" id="experience">
+        <p className="exp-label">Experience</p>
 
         {experiences.map((exp, index) => (
           <React.Fragment key={index}>
-            <div style={styles.row}>
+            <div className="exp-row">
               {exp.photoLeft ? (
                 <>
                   <PhotoSlot />
 
-                  <div style={styles.content}>
-                    <div style={styles.jobTop}>
-                      <span style={styles.jobRole}>{exp.role}</span>
-                      <span style={styles.jobDate}>{exp.date}</span>
+                  <div className="exp-content">
+                    <div className="exp-job-top">
+                      <span className="exp-job-role">{exp.role}</span>
+                      <span className="exp-job-date">{exp.date}</span>
                     </div>
 
-                    <div style={styles.jobBottom}>
-                      <span style={styles.jobCompany}>{exp.company}</span>
-                      <span style={styles.jobLocation}>{exp.location}</span>
+                    <div className="exp-job-bottom">
+                      <span className="exp-job-company">{exp.company}</span>
+                      <span className="exp-job-location">{exp.location}</span>
                     </div>
 
                     <TypewriterOnScroll text={exp.description} />
@@ -256,15 +314,15 @@ const Experience = () => {
                 </>
               ) : (
                 <>
-                  <div style={styles.content}>
-                    <div style={styles.jobTop}>
-                      <span style={styles.jobRole}>{exp.role}</span>
-                      <span style={styles.jobDate}>{exp.date}</span>
+                  <div className="exp-content">
+                    <div className="exp-job-top">
+                      <span className="exp-job-role">{exp.role}</span>
+                      <span className="exp-job-date">{exp.date}</span>
                     </div>
 
-                    <div style={styles.jobBottom}>
-                      <span style={styles.jobCompany}>{exp.company}</span>
-                      <span style={styles.jobLocation}>{exp.location}</span>
+                    <div className="exp-job-bottom">
+                      <span className="exp-job-company">{exp.company}</span>
+                      <span className="exp-job-location">{exp.location}</span>
                     </div>
 
                     <TypewriterOnScroll text={exp.description} />
@@ -276,7 +334,7 @@ const Experience = () => {
             </div>
 
             {index < experiences.length - 1 && (
-              <hr style={styles.divider} />
+              <hr className="exp-divider" />
             )}
           </React.Fragment>
         ))}
