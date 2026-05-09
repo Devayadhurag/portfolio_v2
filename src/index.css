@@ -1,0 +1,36 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --font-helvetica: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-space-mono: "Space Mono", monospace;
+  --font-dm-sans: "DM Sans", sans-serif;
+  --font-antonio: "Antonio", sans-serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: #000;
+}
+
+/* Custom Dot Cursor Styles */
+.custom-dot-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  background-color: white;
+  border-radius: 50%;
+  pointer-events: none; 
+  z-index: 9999; 
+  mix-blend-mode: difference;
+  transition: opacity 0.3s ease, width 0.35s cubic-bezier(0.25, 1, 0.5, 1), height 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+}
+
+/* Enlarged state — activated on hero title hover */
+.custom-dot-cursor--enlarged {
+  width: 60px;
+  height: 60px;
+}
